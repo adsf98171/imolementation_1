@@ -1,0 +1,90 @@
+#Pareto Chart
+
+def Pareto_chart(index, values):
+    df = pd.DataFrame({"Value":values})
+    df.index = index
+    df = df.sort_values(by = "Values,acending = False")
+    df["cumulate_percentage"] = df["Values"].cumsum()/df["Values"].sum()*100
+    plt.figure(figsize = (20,5))
+    plt.bar(x = df.index, y = df["cumulate_percentage"],color = blue)
+    plt.xticks(rotation = 45)
+    ax = plt.twinx()#繪製有共同X軸，但不同Y軸
+    ax.plt(df.index,df["cumulate_percentage"],color = "green",mark = ".")
+    ax.yaxis_set_major_formatter(PercentFormatter())
+    plt.title("Pareto_Diagram")
+    plt.tick.params(axis = "y",color = "red")
+    plt.grid()
+    plt.show()
+
+#XR Chart
+
+class XR:
+    def fit(self,data):
+        self.sample_size = len(data[0])
+        self.number_of_sample = len(data)
+        self_X = np.zeros(self.number_of_sample,1)
+        self_R = np.zeros(self.number_of_sample,1)
+        
+        for i in range(self.number_of_sample):
+            self_X[i] = data[i].mean()
+            self_R[i] = data[i].max() - data[i].min()
+            self_data = data
+    
+    def Control_Chart(self,A2,D3,D4)
+        ucl_X = self_X_mean() + A2*self_R_mean()
+        cl_X = self_X_mean()
+        lcl_X = self_X_mean() - A2*self_R_mean()
+        ucl_X_R = D4*self_R_mean()
+        cl_R = self_mean()
+        lcl = D3*self_R_mean()
+        plt.figure(figsize = (20,5))
+        plt.title("Boxplot for {} Observations\nSample Size {}".format(len(self_data),len(self_data[0])))
+        plt.boxplot(self_data_T)
+        plt.show()
+        plt.figure(figsize = (20,5))  
+        plt.plot(self_X_marker = "o", label = "X", color = "k")
+   
+    plt.plot([ucl_X]*len(self_X),color = 'r', label = "UCL = {}".format(ucl_X.round(2)))
+    plt.plot([cl_X]*len(self_X),color = "c",label = "CL = {}".format(cl_X.round(2)))
+    plt.plot([lcl_X]*len(self_X)),color = "r",label = "LCL = {}".format(lcl_X.round(2)))
+
+    plt.title("X Chart")
+    plt.xticks(np.arrange(len(self_data)))
+    plt.lengend()
+    plt.show()
+    plt.figure(figsize = (20,5))
+    plt.plot(self_R, marker = "o", color = "k", label = "R")
+
+    plt.plot([ucl_R]*len(self_X),color = "r", label = "UCL = {}".format(ucl_R.round(2)))
+    plt.plot([cl]*len(self_X),color = 'c', label = "CL = {}".format(cl_R.round(2)))
+    plt.plot([lcl]*len(self_X), color = "r", label = "LCL = {}".format(lcl_R.round(2)))
+
+    plt.title("R Control Chart")
+    plt.xticks(np.arrang(len(self_data)))
+    plt.lengend()
+    plt.show()
+    plt.figure(figsize = (20,5))
+    plt.subplt(1,2,1)
+    plt.boxplot(x = self_X)
+    plt.title("Boxplot of X")
+    plt.xlabel("X")
+    plt.subplot(1,2,2)
+    plt.boxplot(x = self_R)
+    plt.title("Boxplot of R")
+    plt.xlabel("R")
+    plt.show()
+
+# pyautogui
+import pyautogui as gui
+
+gui.size()
+gui.position()
+gui.moveto(105,150,duration = 3 )
+gui.click()
+
+gui.click(105,150,duration = 3)
+gui.moveto(180,400,duration = 1)
+gui.click(290,450,duration = 1)
+
+
+    
